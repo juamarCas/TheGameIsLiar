@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour
     public string[] sentences;
     private int index;
     public bool isTalking;  // está hablando con el jugador?
-    public bool canType = true; // puede presionar F para seguir hablando?
+    
 
 
     public GameObject chatBox;
@@ -20,7 +20,6 @@ public class NPC : MonoBehaviour
     void Start()
     {
         isTalking = false;
-        canType = true;
     }
 
   
@@ -37,15 +36,17 @@ public class NPC : MonoBehaviour
         StartCoroutine(Type());
     }
 
+    //muestra en el chatbox letra por letra en la converzación
     IEnumerator Type()
     {
         foreach (char letter in sentences[index].ToCharArray())
         {
             textDisplay.text += letter;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
+    //pasa a la siguiente oración del NPC
     public void NextSentence()
     {
         if(index < sentences.Length - 1)
