@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class CharacterAnimationManager : MonoBehaviour
 {
-    PlayerMovement playerMovement;
+    public PlayerMovement playerMovement;
     NPC npc;
     Animator anim;
 
     private void Start()
     {
-        playerMovement = GetComponentInParent<PlayerMovement>();
-        npc = GetComponentInParent<NPC>();
+        if(transform.tag == "NPC")
+            npc = GetComponentInParent<NPC>();
+
         anim = GetComponent<Animator>();
     }
 
@@ -25,11 +26,11 @@ public class CharacterAnimationManager : MonoBehaviour
                 anim.SetInteger("param", 1);
             if (playerMovement.state == States.talking)
                 anim.SetInteger("param", 2);
+
         }
         //NPC Animations
         else
         {
-            Debug.Log("harold");
             if (npc.state == States.idle)
                 anim.SetInteger("param", 0);
             if (npc.state == States.walking)
@@ -37,6 +38,5 @@ public class CharacterAnimationManager : MonoBehaviour
             if (npc.state == States.talking)
                 anim.SetInteger("param", 2);
         }
-            
     }
 }

@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Componentes de velocidad")]
     public float moveSpeed;
 
+    public Transform mesh;
+    private float meshRotY;
+
     [Header("States")]
     public States state;
 
@@ -16,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     bool canTalk = true; //puede hablar? 
 
     private float angle;
-    private Quaternion targetRotation;
+    private Quaternion targetRotation;    
     private Vector2 input;
     Transform cam; 
 
@@ -32,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         talkCounter = 0f;
         cam = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
+        meshRotY = mesh.rotation.y;
     }
 
     // Update is called once per frame
@@ -50,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 TargetPos = new Vector3(transform.position.x, transform.position.y - 0.93f, transform.position.z);
+        mesh.position = TargetPos;
+
         if (canMove)
         {
             PlayerInput();
@@ -81,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
         targetRotation = Quaternion.Euler(0f, angle, 0f);
         transform.rotation = targetRotation;
 
+        Quaternion targetRotationMesh = Quaternion.Euler(0f, angle + 90f, 0f);
+        mesh.rotation = Quaternion.Lerp(mesh.rotation, targetRotationMesh, 10f * Time.deltaTime);   
     }
     private void Move()
     {
@@ -107,8 +116,6 @@ public class PlayerMovement : MonoBehaviour
                     npc.isTalking = true;
                     state = States.talking;
                     npc.state = States.talking;
-                    faceTarget(npc.transform, 20f);
-                    npc.faceTarget(transform, 20f);
                 }
                 else
                 {
@@ -120,6 +127,8 @@ public class PlayerMovement : MonoBehaviour
             if (npc.isTalking)
             {
                 canMove = false;
+                faceTarget(npc.transform, 10f);
+                npc.faceTarget(transform, 10f);
             }
             else
             {
