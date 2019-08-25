@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI textDisplay;
+    public States state = States.idle;
 
     public string Name;
     public string[] sentences;
@@ -62,6 +63,15 @@ public class NPC : MonoBehaviour
             textDisplay.text = "";
             isTalking = false;
             chatBox.gameObject.SetActive(false);
+            state = States.idle;
         }
+    }
+
+    public void faceTarget(Transform target, float damping)
+    {
+        var lookPos = target.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
     }
 }

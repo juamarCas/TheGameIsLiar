@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum States { idle, walking, talking}
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Componentes de velocidad")]
     public float moveSpeed;
-    public float turnSpeed;
+
+    [Header("States")]
+    public States state;
 
     public float timeBtwnTalk; //tiempo entre poder tocar el botón de hablar
     private float talkCounter;
@@ -50,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             PlayerInput();
-            if(Mathf.Abs(input.x) < 1 && Mathf.Abs(input.y) < 1) { return; }
+            if(Mathf.Abs(input.x) < 1 && Mathf.Abs(input.y) < 1) {
+                state = States.idle;
+                return; }
             CalculateDirection();
             PlayerRotate();
             Move();
@@ -74,11 +79,12 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerRotate()
     {
         targetRotation = Quaternion.Euler(0f, angle, 0f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed*Time.deltaTime);
+        transform.rotation = targetRotation;
 
     }
     private void Move()
     {
+        state = States.walking;
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
     #endregion
@@ -92,13 +98,17 @@ public class PlayerMovement : MonoBehaviour
             if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) && canTalk)
             {
                 talkCounter = timeBtwnTalk;
-                canTalk = false; 
+                canTalk = false;
 
                 if (npc.isTalking == false)
                 {
                     //comienza parla
                     npc.Talk();
                     npc.isTalking = true;
+                    state = States.talking;
+                    npc.state = States.talking;
+                    faceTarget(npc.transform, 20f);
+                    npc.faceTarget(transform, 20f);
                 }
                 else
                 {
@@ -122,5 +132,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+
+    void faceTarget(Transform target, float damping)
+    {
+        var lookPos = target.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
     }
 }
