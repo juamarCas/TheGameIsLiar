@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private float lastRotation; 
     private Vector3 moveDirection;
     public float rotateSpeed;
+    private bool canMove = true; //se puede mover? 
+   
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
-        PlayerRotate();
+        if (canMove)
+        {
+            PlayerMove();
+            PlayerRotate();
+        }
+        
     }
 
     private void PlayerMove()
@@ -76,4 +82,42 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    private void OnTriggerStay(Collider other)
+    {
+
+        NPC npc = other.GetComponent<NPC>();
+        if (npc != null)
+        {
+            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) )
+            {
+
+                if (npc.isTalking == false)
+                {
+                    //comienza parla
+                    npc.Talk();
+                    npc.isTalking = true;
+                }
+                else
+                {
+                    npc.NextSentence();
+                }
+
+            }
+
+            if (npc.isTalking)
+            {
+                canMove = false;
+            }
+            else
+            {
+                canMove = true;
+            }
+        }
+        else
+        {
+            return;
+        }
+
+
+    }
 }

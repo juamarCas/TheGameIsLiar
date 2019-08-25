@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
 
     public Transform target;
@@ -20,4 +20,6 @@ public class Camera : MonoBehaviour
         transform.position = target.position - offset;
         transform.LookAt(target);
     }
+
+
 }
