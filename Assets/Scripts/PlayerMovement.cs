@@ -7,50 +7,32 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Componentes de velocidad")]
     public float moveSpeed;
+    public bool canMove = true; //se puede mover? 
 
+    [Header("Mesh Movement")]
     public Transform mesh;
     private float meshRotY;
 
     [Header("States")]
     public States state;
 
-    public float timeBtwnTalk; //tiempo entre poder tocar el botón de hablar
-    private float talkCounter;
-    bool canTalk = true; //puede hablar? 
-
     private float angle;
     private Quaternion targetRotation;    
     private Vector2 input;
     Transform cam; 
-
-
-   
+    
     private Rigidbody rb;
-    private bool canMove = true; //se puede mover? 
    
 
     // Start is called before the first frame update
     void Start()
     {
-        talkCounter = 0f;
         cam = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         meshRotY = mesh.rotation.y;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(talkCounter <= 0)
-        {
-            canTalk = true;
-        }
-        else
-        {
-            talkCounter -= Time.deltaTime;
-        }
-       
-    }
+    
 
     private void FixedUpdate()
     {
@@ -98,52 +80,9 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    private void OnTriggerStay(Collider other)
-    {
+    
 
-        NPC npc = other.GetComponent<NPC>();
-        if (npc != null)
-        {
-            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) && canTalk)
-            {
-                talkCounter = timeBtwnTalk;
-                canTalk = false;
-
-                if (npc.isTalking == false)
-                {
-                    //comienza parla
-                    npc.Talk();
-                    npc.isTalking = true;
-                    state = States.talking;
-                    npc.state = States.talking;
-                }
-                else
-                {
-                    npc.NextSentence();
-                }
-
-            }
-
-            if (npc.isTalking)
-            {
-                canMove = false;
-                faceTarget(npc.transform, 10f);
-                npc.faceTarget(transform, 10f);
-            }
-            else
-            {
-                canMove = true;
-            }
-        }
-        else
-        {
-            return;
-        }
-
-
-    }
-
-    void faceTarget(Transform target, float damping)
+    public void faceTarget(Transform target, float damping)
     {
         var lookPos = target.position - transform.position;
         lookPos.y = 0;
