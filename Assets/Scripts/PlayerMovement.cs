@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Componentes de velocidad")]
     public float moveSpeed;
+    private float walkingSpeed;
+    private float runningSpeed;
     public bool canMove = true; //se puede mover? 
 
     [Header("Mesh Movement")]
@@ -30,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         meshRotY = mesh.rotation.y;
+        walkingSpeed = moveSpeed;
+        runningSpeed = moveSpeed * 1.8f;
     }
 
     
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
             CalculateDirection();
             PlayerRotate();
             Move();
+            Run();
         }
         
     }
@@ -77,6 +82,13 @@ public class PlayerMovement : MonoBehaviour
     {
         state = States.walking;
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
+    }
+    private void Run()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+            moveSpeed = runningSpeed;
+        else
+            moveSpeed = walkingSpeed;
     }
     #endregion
 
