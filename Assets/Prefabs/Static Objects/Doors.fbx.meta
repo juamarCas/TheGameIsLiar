@@ -3,7 +3,17 @@ guid: ae18492777b33f0429ac8fd92db60055
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door marco
+    second: {fileID: 2100000, guid: 7934f9b9943f3aa4fafff5767c999925, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door mat
+    second: {fileID: 2100000, guid: c9153ea756d337c4795c3e44f13893fd, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

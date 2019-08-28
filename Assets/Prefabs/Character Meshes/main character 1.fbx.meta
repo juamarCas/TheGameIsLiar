@@ -45,7 +45,47 @@ ModelImporter:
   - first:
       74: -211013271525412971
     second: Armature.001|walking
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buttons
+    second: {fileID: 2100000, guid: f80f8790e7b6a004d8d4612bfd6640d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyes
+    second: {fileID: 2100000, guid: 6c06cb3879c431b4cacb1b7b43d3a1df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glasses
+    second: {fileID: 2100000, guid: bc2211959b2ec0748b7b6fbf0be1b9c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glasses 2
+    second: {fileID: 2100000, guid: 1708d901a6f719d4ca3736a9a908b1ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair 1
+    second: {fileID: 2100000, guid: 08d37965327561e4da83f03906b3afba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pants main char
+    second: {fileID: 2100000, guid: 6bcfb00c154760b449decf579ecd1fbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shirt main char
+    second: {fileID: 2100000, guid: 4f8865800ae7c2c49806667d78e79e61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin color 1
+    second: {fileID: 2100000, guid: c68a3d90a5c10aa47a76e63b86ad23dc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

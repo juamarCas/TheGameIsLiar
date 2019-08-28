@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimationManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
+    <Compile Include="Assets\Scripts\Helper Scripts\BlinkEyes.cs" />
     <Compile Include="Assets\Scripts\Helper Scripts\DoorOpenAnimation.cs" />
     <Compile Include="Assets\Scripts\Helper Scripts\RemoveRoof.cs" />
     <Compile Include="Assets\Scripts\Interaction.cs" />
