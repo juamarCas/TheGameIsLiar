@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class RemoveRoof : MonoBehaviour
 {
-    public GameObject roof;
+    public List<GameObject> roof;
     private bool playerIsInside = false;
 
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            roof.SetActive(false);
+            foreach (GameObject r in roof) {
+                r.SetActive(false);
+            }
             playerIsInside = true;
         }
     }
@@ -20,7 +22,10 @@ public class RemoveRoof : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            roof.SetActive(true);
+            foreach (GameObject r in roof)
+            {
+                r.SetActive(true);
+            }
             playerIsInside = false;
         }
     }
