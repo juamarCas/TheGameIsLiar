@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
         runningSpeed = moveSpeed * 1.8f;
     }
 
-    
 
     private void FixedUpdate()
     {
