@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum States { idle, walking, talking}
+public enum States { idle, walking, talking, running}
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Componentes de velocidad")]
@@ -85,9 +85,15 @@ public class PlayerMovement : MonoBehaviour
     private void Run()
     {
         if (Input.GetKey(KeyCode.LeftShift))
+        {
             moveSpeed = runningSpeed;
+            state = States.running;
+        }
         else
+        {
             moveSpeed = walkingSpeed;
+            state = States.walking;
+        }
     }
     #endregion
 

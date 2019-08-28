@@ -26,6 +26,8 @@ public class CharacterAnimationManager : MonoBehaviour
                 anim.SetInteger("param", 1);
             if (playerMovement.state == States.talking)
                 anim.SetInteger("param", 2);
+            if (playerMovement.state == States.running)
+                anim.SetInteger("param", 3);
 
         }
         //NPC Animations
