@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
 public class NPC : MonoBehaviour
 {
+    
+
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI textDisplay;
     public States state = States.idle;
@@ -13,8 +16,6 @@ public class NPC : MonoBehaviour
     public string[] sentences;
     private int index;
     public bool isTalking;  // está hablando con el jugador?
-    
-
 
     public GameObject chatBox;
   

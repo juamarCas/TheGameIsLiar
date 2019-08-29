@@ -2976,7 +2976,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c245b5df57bd85d4fb4f4bec3746d804,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 180.8
+      value: 187.74
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c245b5df57bd85d4fb4f4bec3746d804,
         type: 3}
@@ -8625,11 +8625,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: police station
       objectReference: {fileID: 0}
-    - target: {fileID: -7591824806308581011, guid: 222d5120b80258346a250fff29f87903,
+    - target: {fileID: -1289380284854775318, guid: 222d5120b80258346a250fff29f87903,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c79848cddd4f2b24ab8b9ba2481c2e81, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 222d5120b80258346a250fff29f87903,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8685,11 +8685,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1289380284854775318, guid: 222d5120b80258346a250fff29f87903,
+    - target: {fileID: -7591824806308581011, guid: 222d5120b80258346a250fff29f87903,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c79848cddd4f2b24ab8b9ba2481c2e81, type: 2}
     - target: {fileID: 1958529666632713821, guid: 222d5120b80258346a250fff29f87903,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8921,7 +8921,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c245b5df57bd85d4fb4f4bec3746d804,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 186.1
+      value: 187.3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c245b5df57bd85d4fb4f4bec3746d804,
         type: 3}
@@ -10975,11 +10975,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NPC
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 18f923f2b3677624084d2538cd644349,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7190d0bfaade48a44bfc179d4bb6fba7, type: 2}
     - target: {fileID: -4216859302048453862, guid: 18f923f2b3677624084d2538cd644349,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11050,6 +11045,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 18f923f2b3677624084d2538cd644349,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7190d0bfaade48a44bfc179d4bb6fba7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f923f2b3677624084d2538cd644349, type: 3}
 --- !u!1 &1743884981
@@ -11133,7 +11133,7 @@ GameObject:
   - component: {fileID: 1755610781}
   - component: {fileID: 1755610780}
   m_Layer: 0
-  m_Name: NPC Talking Range
+  m_Name: Interaction Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
