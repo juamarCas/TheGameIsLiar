@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Interaction : MonoBehaviour
 {
-
+   
+    [Header("Componentes de tiempo")]
     public float timeBtwnTalk; //tiempo entre poder tocar el botón de hablar
     private float talkCounter;
     bool canTalk = true; //puede hablar? 
@@ -34,6 +36,7 @@ public class Interaction : MonoBehaviour
     {
 
         NPC npc = other.GetComponent<NPC>();
+        InteractableObject interactable = other.GetComponent<InteractableObject>();
         if (npc != null)
         {
             if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) && canTalk)
@@ -61,6 +64,33 @@ public class Interaction : MonoBehaviour
                 playerMovement.canMove = false;
                 playerMovement.faceTarget(npc.transform, 10f);
                 npc.faceTarget(transform, 10f);
+            }
+            else
+            {
+                playerMovement.canMove = true;
+            }
+        }else if (interactable != null)
+        {   
+            if(other.tag == "Interactable" && Input.GetKeyDown(KeyCode.F) && canTalk)
+            {
+                talkCounter = timeBtwnTalk;
+                canTalk = false;
+                if(interactable.isInteracting == false)
+                {
+                    interactable.Interact();
+                    interactable.isInteracting = true;
+                }
+                else
+                {
+                    interactable.NextSentence();
+                }
+            }
+
+            if (interactable.isInteracting)
+            {
+                playerMovement.canMove = false;
+                playerMovement.faceTarget(interactable.transform, 10f);
+              
             }
             else
             {

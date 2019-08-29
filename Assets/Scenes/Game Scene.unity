@@ -2272,11 +2272,11 @@ MonoBehaviour:
   nameText: {fileID: 3085137991372576362}
   textDisplay: {fileID: 828513989526706097}
   state: 0
+  NPCinteractions: []
   Name: Sonia
-  sentences:
-  - Hola soy sonia
-  - Que te parezco?
+  dialogueState: 0
   isTalking: 0
+  dialogue: []
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &347568853
 PrefabInstance:
@@ -4018,11 +4018,11 @@ MonoBehaviour:
   nameText: {fileID: 3085137991372576362}
   textDisplay: {fileID: 828513989526706097}
   state: 0
+  NPCinteractions: []
   Name: Gloria
-  sentences:
-  - Hola soy Gloria
-  - "y soy bien est\xFApida "
+  dialogueState: 0
   isTalking: 0
+  dialogue: []
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &664319662
 PrefabInstance:
@@ -6218,6 +6218,118 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20.341337, y: 4.602998, z: 1.7140431}
   m_Center: {x: 0.001575947, y: 2.301436, z: 0.00000026822093}
+--- !u!1 &1025061245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025061250}
+  - component: {fileID: 1025061249}
+  - component: {fileID: 1025061248}
+  - component: {fileID: 1025061247}
+  - component: {fileID: 1025061246}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1025061246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025061245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ec57f7066b50b47ba384a199c98dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 3085137991372576362}
+  textDisplay: {fileID: 828513989526706097}
+  chatBox: {fileID: 8384443696342264212}
+  objectName: .
+  sentences:
+  - It's a unity default cube
+  - amazing
+  isInteracting: 0
+--- !u!65 &1025061247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025061245}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1025061248
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025061245}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1025061249
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025061245}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1025061250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025061245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 53.59, y: 0.758, z: -101.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1027714719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 36f0c3cf208eed74c8c21ac4323999fb,
@@ -9567,11 +9679,13 @@ MonoBehaviour:
   nameText: {fileID: 3085137991372576362}
   textDisplay: {fileID: 828513989526706097}
   state: 0
+  NPCinteractions: []
   Name: Harold
-  sentences:
-  - Hola soy Harold
-  - Haroldblamos
+  dialogueState: 0
   isTalking: 0
+  dialogue:
+  - sentences: []
+  - sentences: []
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &1554475721
 PrefabInstance:
@@ -10975,11 +11089,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NPC
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 18f923f2b3677624084d2538cd644349,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7190d0bfaade48a44bfc179d4bb6fba7, type: 2}
     - target: {fileID: -4216859302048453862, guid: 18f923f2b3677624084d2538cd644349,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11050,6 +11159,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 18f923f2b3677624084d2538cd644349,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7190d0bfaade48a44bfc179d4bb6fba7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f923f2b3677624084d2538cd644349, type: 3}
 --- !u!1 &1743884981
