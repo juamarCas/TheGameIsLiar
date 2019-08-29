@@ -11,7 +11,11 @@ public class NPC : MonoBehaviour
     public States state = States.idle;
     public GameObject[] NPCinteractions; //esta variable guardará a todos los npc en el cual este les afecte la interacción
     public string Name;
-    public int dialogueState; // estado de dialogo  
+    public int dialogueState; // estado de dialogo 
+    public bool itHasInteractions;//tiene alguna interacción con otro NPC?
+    public bool firsToInteract;//determinará el orden con el que debes hablar con las interacciones con el resto
+    public bool hasTalkedToOther = false; // ya hablaste con el otro NPC?
+    public bool startInteractions; // quien inicia las interacciones? 
    
     
     //public string[] dialogues; 
@@ -31,6 +35,7 @@ public class NPC : MonoBehaviour
     void Start()
     {
         isTalking = false;
+        dialogueState = 0; 
     }
 
   
@@ -83,5 +88,35 @@ public class NPC : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+    }
+
+    public void ChangeOriginalNPCDialogueState(NPC npc)
+    {
+
+    }
+
+    public void ChangeConversationState(NPC npc)
+    {
+        if(npc != null)
+        {
+            npc.dialogueState = 1;
+            
+        }
+    }
+
+    public void ChangeOtherNPCState() // cambiar dialogo según con quien hayas hablado
+    {
+       
+        firsToInteract = false;
+        NPC otherNPC = NPCinteractions[0].gameObject.GetComponent<NPC>();
+        if(otherNPC != null)
+        {
+            ChangeConversationState(otherNPC);
+        }
+        else
+        {
+            return;
+        }
+        
     }
 }
