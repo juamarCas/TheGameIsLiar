@@ -7,22 +7,24 @@ using TMPro;
 public class NPC : MonoBehaviour
 {
     
-
+    [Header("General Components")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI textDisplay;
     public States state = States.idle;
-    public GameObject[] NPCinteractions; //esta variable guardará a todos los npc en el cual este les afecte la interacción
     public string Name;
+
+    [Header("Dynamic Interactions")]
+    public bool hasDynamicInteraction = false;
+    public bool startsInteraction = false;
     public int dialogueState; // estado de dialogo 
-    public bool itHasInteractions;//tiene alguna interacción con otro NPC?
-    public bool firsToInteract;//determinará el orden con el que debes hablar con las interacciones con el resto
-    public bool hasTalkedToOther = false; // ya hablaste con el otro NPC?
-    public bool startInteractions; // quien inicia las interacciones? 
-   
-    
-    //public string[] dialogues; 
-    private int index;
+    public GameObject[] NPCinteractions; //esta variable guardará a todos los npc en el cual este les afecte la interacción
+
+
+    [Header("Dialogue")]
     public bool isTalking;  // está hablando con el jugador?
+    private int index;
+    public List<Sentences> dialogue = new List<Sentences>();
+    public GameObject chatBox;
 
     [System.Serializable]
     public class Sentences
@@ -30,9 +32,6 @@ public class NPC : MonoBehaviour
         public string[] sentences;
     }
 
-    public List<Sentences> dialogue = new List<Sentences>();
-
-    public GameObject chatBox;
   
     void Start()
     {
@@ -40,8 +39,8 @@ public class NPC : MonoBehaviour
         dialogueState = 0; 
     }
 
-  
 
+    #region Talking
     public void Talk()
     {
         
@@ -60,7 +59,7 @@ public class NPC : MonoBehaviour
         foreach (char letter in dialogue[dialogueState].sentences[index].ToCharArray())
         {
             textDisplay.text += letter;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.0025f);
         }
     }
 
@@ -69,15 +68,14 @@ public class NPC : MonoBehaviour
     {
         if(index < dialogue[dialogueState].sentences.Length - 1)
         {
-          
-            index++;
             textDisplay.text = "";
+            index++;
             StartCoroutine(Type());
         }
         else
         {
-            index = 0;
             textDisplay.text = "";
+            index = 0;
             isTalking = false;
             chatBox.gameObject.SetActive(false);
             state = States.idle;
@@ -91,34 +89,16 @@ public class NPC : MonoBehaviour
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
     }
+    #endregion
 
-    public void ChangeOriginalNPCDialogueState(NPC npc)
+    
+    public void changeDialogueState()
     {
-
-    }
-
-    public void ChangeConversationState(NPC npc)
-    {
-        if(npc != null)
-        {
-            npc.dialogueState = 1;
-            
-        }
-    }
-
-    public void ChangeOtherNPCState() // cambiar dialogo según con quien hayas hablado
-    {
-       
-        firsToInteract = false;
-        NPC otherNPC = NPCinteractions[0].gameObject.GetComponent<NPC>();
-        if(otherNPC != null)
-        {
-            ChangeConversationState(otherNPC);
-        }
-        else
-        {
+        if (dialogueState == dialogue.Count-1)
             return;
-        }
-        
+        dialogueState++;
+        startsInteraction = true;
     }
+
+
 }

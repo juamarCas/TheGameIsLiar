@@ -35,82 +35,84 @@ public class Interaction : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        NPC npc = other.GetComponent<NPC>();
-        InteractableObject interactable = other.GetComponent<InteractableObject>();
+        NPC npc = other.GetComponent<NPC>(); // npcs
+        InteractableObject interactable = other.GetComponent<InteractableObject>(); // items
+
+        //INTERACCIÓN CON NPCS
         if (npc != null)
         {
-            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) && canTalk)
+            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.E) && canTalk)
             {
                 talkCounter = timeBtwnTalk;
                 canTalk = false;
 
                 if (npc.isTalking == false)
                 {
-                    //comienza parla
-                    if (npc.firsToInteract)
+                    if (npc.hasDynamicInteraction && npc.startsInteraction)
                     {
-                        npc.ChangeOtherNPCState();
-                    }else if(!npc.firsToInteract && npc.NPCinteractions != null && npc.startInteractions && !npc.hasTalkedToOther)
-                    {                     
-                        npc.ChangeConversationState(npc); 
+                        npc.startsInteraction = false;
+                        foreach (GameObject _npc in npc.NPCinteractions)
+                        {
+                            _npc.GetComponent<NPC>().changeDialogueState();
+                        }
                     }
-                    
-                    
                     npc.Talk();
                     npc.isTalking = true;
                     playerMovement.state = States.talking;
                     npc.state = States.talking;
+
                 }
                 else
                 {
                     npc.NextSentence();
                 }
 
-            }
-
-            if (npc.isTalking)
-            {
-                playerMovement.canMove = false;
-                playerMovement.faceTarget(npc.transform, 10f);
-                npc.faceTarget(transform, 10f);
-            }
-            else
-            {
-                playerMovement.canMove = true;
-            }
-        }else if (interactable != null)
-        {   
-            if(other.tag == "Interactable" && Input.GetKeyDown(KeyCode.F) && canTalk)
-            {
-                talkCounter = timeBtwnTalk;
-                canTalk = false;
-                if(interactable.isInteracting == false)
+                if (npc.isTalking)
                 {
-                    interactable.Interact();
-                    interactable.isInteracting = true;
+                    playerMovement.canMove = false;
+                    playerMovement.faceTarget(npc.transform, 10f);
+                    npc.faceTarget(transform, 10f);
                 }
                 else
                 {
-                    interactable.NextSentence();
+                    playerMovement.canMove = true;
                 }
             }
 
-            if (interactable.isInteracting)
+            // INTERACCIÓN CON ITEMS
+            else if (interactable != null)
             {
-                playerMovement.canMove = false;
-                playerMovement.faceTarget(interactable.transform, 10f);
-              
+                if (other.tag == "Interactable" && Input.GetKeyDown(KeyCode.F) && canTalk)
+                {
+                    talkCounter = timeBtwnTalk;
+                    canTalk = false;
+                    if (interactable.isInteracting == false)
+                    {
+                        interactable.Interact();
+                        interactable.isInteracting = true;
+                    }
+                    else
+                    {
+                        interactable.NextSentence();
+                    }
+                }
+
+                if (interactable.isInteracting)
+                {
+                    playerMovement.canMove = false;
+                    playerMovement.faceTarget(interactable.transform, 10f);
+
+                }
+                else
+                {
+                    playerMovement.canMove = true;
+                }
             }
             else
             {
-                playerMovement.canMove = true;
+                return;
             }
-        }
-        else
-        {
-            return;
-        }
 
-
+        }
     }
 }
