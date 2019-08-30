@@ -6,7 +6,7 @@ using TMPro;
 [System.Serializable]
 public class NPC : MonoBehaviour
 {
-    
+
     [Header("General Components")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI textDisplay;
@@ -25,10 +25,11 @@ public class NPC : MonoBehaviour
     private int index;
     public List<Sentences> dialogue = new List<Sentences>();
     public GameObject chatBox;
-
+    private Queue<string> conversation = new Queue<string>();
     [System.Serializable]
     public class Sentences
     {
+        [TextArea(3, 10)]
         public string[] sentences;
     }
 
@@ -43,7 +44,7 @@ public class NPC : MonoBehaviour
     #region Talking
     public void Talk()
     {
-        
+      
         textDisplay.text = "";
         if (nameText != null)
         {
@@ -56,6 +57,7 @@ public class NPC : MonoBehaviour
     //muestra en el chatbox letra por letra en la converzación
     IEnumerator Type()
     {
+        
         foreach (char letter in dialogue[dialogueState].sentences[index].ToCharArray())
         {
             textDisplay.text += letter;
