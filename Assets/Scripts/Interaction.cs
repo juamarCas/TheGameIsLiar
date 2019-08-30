@@ -47,6 +47,15 @@ public class Interaction : MonoBehaviour
                 if (npc.isTalking == false)
                 {
                     //comienza parla
+                    if (npc.firsToInteract)
+                    {
+                        npc.ChangeOtherNPCState();
+                    }else if(!npc.firsToInteract && npc.NPCinteractions != null && npc.startInteractions && !npc.hasTalkedToOther)
+                    {                     
+                        npc.ChangeConversationState(npc); 
+                    }
+                    
+                    
                     npc.Talk();
                     npc.isTalking = true;
                     playerMovement.state = States.talking;

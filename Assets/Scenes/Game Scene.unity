@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2272,13 +2272,26 @@ MonoBehaviour:
   nameText: {fileID: 3085137991372576362}
   textDisplay: {fileID: 828513989526706097}
   state: 0
-  NPCinteractions: []
+  NPCinteractions:
+  - {fileID: 630880440}
   Name: Sonia
   dialogueState: 0
+  itHasInteractions: 1
+  firsToInteract: 1
+  hasTalked: 0
+  startInteractions: 1
   isTalking: 0
   dialogue:
   - sentences:
+<<<<<<< HEAD
     - Harolsonia
+=======
+    - Go talk to that weird green thing
+    - "it\xB4s weir"
+  - sentences:
+    - You talked with that
+    - Ugh
+>>>>>>> 6ea390ec16b37f0c190aaa6c7fd7f32cad4b5eda
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &347568853
 PrefabInstance:
@@ -4020,11 +4033,22 @@ MonoBehaviour:
   nameText: {fileID: 3085137991372576362}
   textDisplay: {fileID: 828513989526706097}
   state: 0
-  NPCinteractions: []
+  NPCinteractions:
+  - {fileID: 330963945}
   Name: Gloria
   dialogueState: 0
+  itHasInteractions: 1
+  firsToInteract: 0
+  hasTalked: 0
+  startInteractions: 0
   isTalking: 0
-  dialogue: []
+  dialogue:
+  - sentences:
+    - "Hello i\xB4m not an Alien"
+    - "I\xB4m a Human like all the living beings in this planet"
+  - sentences:
+    - So, you talked with Sonia
+    - '*Sigh*'
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &664319662
 PrefabInstance:
@@ -9684,6 +9708,10 @@ MonoBehaviour:
   NPCinteractions: []
   Name: Harold
   dialogueState: 0
+  itHasInteractions: 0
+  firsToInteract: 0
+  hasTalked: 0
+  startInteractions: 0
   isTalking: 0
   dialogue: []
   chatBox: {fileID: 8384443696342264212}
