@@ -2276,7 +2276,9 @@ MonoBehaviour:
   Name: Sonia
   dialogueState: 0
   isTalking: 0
-  dialogue: []
+  dialogue:
+  - sentences:
+    - Harolsonia
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &347568853
 PrefabInstance:
@@ -9683,9 +9685,7 @@ MonoBehaviour:
   Name: Harold
   dialogueState: 0
   isTalking: 0
-  dialogue:
-  - sentences: []
-  - sentences: []
+  dialogue: []
   chatBox: {fileID: 8384443696342264212}
 --- !u!1001 &1554475721
 PrefabInstance:

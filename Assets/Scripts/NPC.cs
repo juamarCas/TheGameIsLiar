@@ -19,8 +19,6 @@ public class NPC : MonoBehaviour
     //public string[] dialogues; 
     private int index;
     public bool isTalking;  // está hablando con el jugador?
-<<<<<<< HEAD
-=======
 
     [System.Serializable]
     public class Sentences
@@ -29,7 +27,6 @@ public class NPC : MonoBehaviour
     }
 
     public List<Sentences> dialogue = new List<Sentences>();
->>>>>>> dcd8685d60ce743022aa16e89f2bdf26e66b41ed
 
     public GameObject chatBox;
   
