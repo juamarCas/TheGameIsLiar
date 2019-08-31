@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":69.80384063720703,"y":-0.0001220703125,"z":-75.32333374023438},"rotation":{"x":0.7071068286895752,"y":0.0,"z":0.0,"w":0.7071068286895752},"size":132.56173706054688,"orthographic":false}
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":9.784558296203614,"y":2.046114683151245,"z":2.611419677734375},"rotation":{"x":-0.0026964114513248207,"y":-0.8489432334899902,"z":-0.004331015050411224,"w":0.5284633040428162},"size":9.897805213928223,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":12.103326797485352,"y":24.239526748657228,"z":-51.10626220703125},"rotation":{"x":0.051567159593105319,"y":-0.6129888296127319,"z":0.04014577716588974,"w":0.7873852252960205},"size":20.118427276611329,"orthographic":false}
+>>>>>>> dcd8685d60ce743022aa16e89f2bdf26e66b41ed
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.7262901067733765,"y":1.9217634201049805,"z":7.758697509765625},"rotation":{"x":0.36751827597618105,"y":-0.17287081480026246,"z":0.06972964853048325,"w":0.9111456274986267},"size":30.672574996948243,"orthographic":false}
+>>>>>>> 6ea390ec16b37f0c190aaa6c7fd7f32cad4b5eda
+>>>>>>> 5bb78a2f392b24390db9b6b6edf867f628c7124f

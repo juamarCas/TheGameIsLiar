@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Interaction : MonoBehaviour
 {
-
+   
+    [Header("Componentes de tiempo")]
     public float timeBtwnTalk; //tiempo entre poder tocar el botón de hablar
     private float talkCounter;
     bool canTalk = true; //puede hablar? 
 
     [Header("Dependencies")]
     public PlayerMovement playerMovement;
+    private NPC npc;
 
     private void Start()
     {
@@ -32,32 +35,81 @@ public class Interaction : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        
+        npc = other.GetComponent<NPC>(); // npcs
+        InteractableObject interactable = other.GetComponent<InteractableObject>(); // items
+        if (npc == null)
+            Debug.Log("harold");
 
-        NPC npc = other.GetComponent<NPC>();
+        //INTERACCIÓN CON NPCS
         if (npc != null)
         {
-            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.F) && canTalk)
+            if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.E) && canTalk)
             {
                 talkCounter = timeBtwnTalk;
                 canTalk = false;
 
                 if (npc.isTalking == false)
                 {
-                    //comienza parla
+                    if (npc.hasDynamicInteraction && npc.startsInteraction)
+                    {
+                        npc.startsInteraction = false;
+                        foreach (GameObject _npc in npc.NPCinteractions)
+                        {
+                            _npc.GetComponent<NPC>().changeDialogueState();
+                        }
+                    }
                     npc.Talk();
                     npc.isTalking = true;
                     playerMovement.state = States.talking;
                     npc.state = States.talking;
+
                 }
                 else
                 {
                     npc.NextSentence();
                 }
 
+               
             }
 
-            if (npc.isTalking)
+            // INTERACCIÓN CON ITEMS
+            else if (interactable != null)
             {
+                if (other.tag == "Interactable" && Input.GetKeyDown(KeyCode.F) && canTalk)
+                {
+                    talkCounter = timeBtwnTalk;
+                    canTalk = false;
+                    if (interactable.isInteracting == false)
+                    {
+                        interactable.Interact();
+                        interactable.isInteracting = true;
+                    }
+                    else
+                    {
+                        interactable.NextSentence();
+                    }
+                }
+
+                if (interactable.isInteracting)
+                {
+                    playerMovement.canMove = false;
+                    playerMovement.faceTarget(interactable.transform, 10f);
+
+                }
+                else
+                {
+                    playerMovement.canMove = true;
+                }
+            }
+            else
+            {
+                return;
+            }
+            //Run this code while player is talking to an npc   
+            if (npc.state == States.talking)
+            {
+                Debug.Log("harold");
                 playerMovement.canMove = false;
                 playerMovement.faceTarget(npc.transform, 10f);
                 npc.faceTarget(transform, 10f);
@@ -66,12 +118,7 @@ public class Interaction : MonoBehaviour
             {
                 playerMovement.canMove = true;
             }
-        }
-        else
-        {
-            return;
-        }
 
-
+        }
     }
 }

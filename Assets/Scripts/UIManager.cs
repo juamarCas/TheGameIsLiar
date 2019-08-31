@@ -15,10 +15,10 @@ public class UIManager : MonoBehaviour
         if (triggerFadeOut)
         {
             fadeOut.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(fadeOut.GetComponent<CanvasGroup>().alpha, 1, 0.025f);
-            Vector3 cameraTarget = new Vector3(Camera.main.GetComponent<CameraControl>().offset.x / 2,
-                                                Camera.main.GetComponent<CameraControl>().offset.y,
-                                                Camera.main.GetComponent<CameraControl>().offset.z);
-            Camera.main.GetComponent<CameraControl>().offset = Vector3.Lerp(Camera.main.GetComponent<CameraControl>().offset,
+            Vector3 cameraTarget = new Vector3(Camera.main.GetComponent<CameraControl>().offsetPosition.x / 2,
+                                                Camera.main.GetComponent<CameraControl>().offsetPosition.y,
+                                                Camera.main.GetComponent<CameraControl>().offsetPosition.z);
+            Camera.main.GetComponent<CameraControl>().offsetPosition = Vector3.Lerp(Camera.main.GetComponent<CameraControl>().offsetPosition,
                                                                             cameraTarget, 0.05f);
         }
 

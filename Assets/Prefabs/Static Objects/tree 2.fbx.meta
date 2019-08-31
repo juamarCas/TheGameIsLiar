@@ -3,17 +3,7 @@ guid: 7e6ea3223ba4045428dbd23afb6e0e00
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tree leaves
-    second: {fileID: 2100000, guid: 93e2e089aa8762b4aa226c1d436720f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tree stump
-    second: {fileID: 2100000, guid: ff3e8a035915b7e4ebad4e55478fbb79, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,13 +59,13 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 58
+    normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
-    normalSmoothingSource: 1
+    normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
   copyAvatar: 0
