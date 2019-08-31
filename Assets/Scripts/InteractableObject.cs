@@ -12,7 +12,9 @@ public class InteractableObject : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public GameObject chatBox;
 
-
+    public bool thisStartsQuest;
+    public GameObject wall;
+    public DoorOpenAnimation door;
     public string objectName;
     public string[] sentences;
     private int index;
@@ -20,6 +22,8 @@ public class InteractableObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (wall != null)
+            wall.gameObject.SetActive(true);
         objectName = "";
         isInteracting = false;
     }
@@ -29,6 +33,12 @@ public class InteractableObject : MonoBehaviour
 
     public void Interact()
     {
+        if (thisStartsQuest)
+        {
+            wall.gameObject.SetActive(false);
+            door.enabled = true;
+            thisStartsQuest = false; 
+        }
 
         textDisplay.text = "";
         if (nameText != null)

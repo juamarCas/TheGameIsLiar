@@ -13,10 +13,11 @@ public class InteractionObjects : MonoBehaviour
 
     [Header("Dependencies")]
     public PlayerMovement playerMovement;
+    
     // Start is called before the first frame update
 
     private void Start()
-    {
+    {      
         talkCounter = 0f;
     }
 
@@ -41,6 +42,7 @@ public class InteractionObjects : MonoBehaviour
             Debug.Log("Entered");
             if (other.tag == "Interactable" && Input.GetKeyDown(KeyCode.E) && canTalk)
             {
+                
                 talkCounter = timeBtwnTalk;
                 canTalk = false;
                 if (interactable.isInteracting == false)
