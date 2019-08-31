@@ -86,6 +86,7 @@ public class NPC : MonoBehaviour
 
     public void faceTarget(Transform target, float damping)
     {
+        Debug.Log("faceando");
         var lookPos = target.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);

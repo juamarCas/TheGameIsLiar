@@ -13,6 +13,7 @@ public class Interaction : MonoBehaviour
 
     [Header("Dependencies")]
     public PlayerMovement playerMovement;
+    private NPC npc;
 
     private void Start()
     {
@@ -34,9 +35,11 @@ public class Interaction : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
-        NPC npc = other.GetComponent<NPC>(); // npcs
+        
+        npc = other.GetComponent<NPC>(); // npcs
         InteractableObject interactable = other.GetComponent<InteractableObject>(); // items
+        if (npc == null)
+            Debug.Log("harold");
 
         //INTERACCIÓN CON NPCS
         if (npc != null)
@@ -67,16 +70,7 @@ public class Interaction : MonoBehaviour
                     npc.NextSentence();
                 }
 
-                if (npc.isTalking)
-                {
-                    playerMovement.canMove = false;
-                    playerMovement.faceTarget(npc.transform, 10f);
-                    npc.faceTarget(transform, 10f);
-                }
-                else
-                {
-                    playerMovement.canMove = true;
-                }
+               
             }
 
             // INTERACCIÓN CON ITEMS
@@ -111,6 +105,18 @@ public class Interaction : MonoBehaviour
             else
             {
                 return;
+            }
+            //Run this code while player is talking to an npc   
+            if (npc.state == States.talking)
+            {
+                Debug.Log("harold");
+                playerMovement.canMove = false;
+                playerMovement.faceTarget(npc.transform, 10f);
+                npc.faceTarget(transform, 10f);
+            }
+            else
+            {
+                playerMovement.canMove = true;
             }
 
         }

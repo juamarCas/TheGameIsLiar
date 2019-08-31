@@ -14,6 +14,7 @@ public class CameraControl : MonoBehaviour
     public float cameraRotSpeed = 0.5f;
     bool rotatingCamera = false;
     int i = 0;
+    float t = 0;
 
 
     private void Start()
@@ -31,7 +32,7 @@ public class CameraControl : MonoBehaviour
 
     void changeAngle()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && t <= 0)
         {
             if (i == 0)
             {
@@ -58,7 +59,7 @@ public class CameraControl : MonoBehaviour
 
     IEnumerator rotateCamera(float targetRotY)
     {
-        float t = 1;
+        t = 0.25f;
         Quaternion targetRot = Quaternion.Euler(pivot.transform.rotation.x, targetRotY, pivot.transform.rotation.z);
         while (t>0)
         {
