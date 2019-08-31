@@ -22,6 +22,7 @@ public class Patrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         waitTime = startWaitTime;
         if (isRandom)
         {

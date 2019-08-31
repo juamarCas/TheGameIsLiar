@@ -8,15 +8,19 @@ public class Interaction : MonoBehaviour
    
     [Header("Componentes de tiempo")]
     public float timeBtwnTalk; //tiempo entre poder tocar el botón de hablar
+    public PlayerManager thePM;
     private float talkCounter;
     bool canTalk = true; //puede hablar? 
-
+    
     [Header("Dependencies")]
     public PlayerMovement playerMovement;
-    private NPC npc;
+    NPC npc;
+    InteractableObject interactable;
+    //private NPC npc;
 
     private void Start()
     {
+       
         talkCounter = 0f;
     }
 
@@ -37,13 +41,12 @@ public class Interaction : MonoBehaviour
     {
         
         npc = other.GetComponent<NPC>(); // npcs
-        InteractableObject interactable = other.GetComponent<InteractableObject>(); // items
-        if (npc == null)
-            Debug.Log("harold");
-
+        //interactable = other.GetComponent<InteractableObject>(); // items
+       
         //INTERACCIÓN CON NPCS
         if (npc != null)
         {
+            Debug.Log("Not human");
             if (other.tag == "NPC" && Input.GetKeyDown(KeyCode.E) && canTalk)
             {
                 talkCounter = timeBtwnTalk;
@@ -56,9 +59,29 @@ public class Interaction : MonoBehaviour
                         npc.startsInteraction = false;
                         foreach (GameObject _npc in npc.NPCinteractions)
                         {
-                            _npc.GetComponent<NPC>().changeDialogueState();
+                            _npc.GetComponent<NPC>().changeDialogueState(false,false);
                         }
                     }
+                    if (npc.haveToGiveYouSomething && !npc.haveToReceiveSomething && !thePM.hasTheCoffee)
+                    {
+                        thePM.hasTheCoffee = true;
+                       
+                    }else if(npc.haveToGiveYouSomething && npc.haveToReceiveSomething && thePM.hasTheCoffee && !thePM.hasTheTaco)
+                    {
+                        thePM.hasTheTaco = true;
+                        npc.changeDialogueState(thePM.hasTheCoffee, thePM.hasTheTaco);
+                    }
+                    else if (!npc.haveToGiveYouSomething && npc.haveToReceiveSomething && thePM.hasTheCoffee && thePM.hasTheTaco)
+                    {
+                        npc.changeDialogueState(thePM.hasTheCoffee, thePM.hasTheTaco);
+                    }
+
+                        if (npc.ActivateEvent && !npc.hasActivatedEvent)
+                    {
+                        npc.hasActivatedEvent = true;
+                        npc.NPCQuest.gameObject.SetActive(true);
+                    }
+
                     npc.Talk();
                     npc.isTalking = true;
                     playerMovement.state = States.talking;
@@ -73,40 +96,7 @@ public class Interaction : MonoBehaviour
                
             }
 
-            // INTERACCIÓN CON ITEMS
-            else if (interactable != null)
-            {
-                if (other.tag == "Interactable" && Input.GetKeyDown(KeyCode.F) && canTalk)
-                {
-                    talkCounter = timeBtwnTalk;
-                    canTalk = false;
-                    if (interactable.isInteracting == false)
-                    {
-                        interactable.Interact();
-                        interactable.isInteracting = true;
-                    }
-                    else
-                    {
-                        interactable.NextSentence();
-                    }
-                }
-
-                if (interactable.isInteracting)
-                {
-                    playerMovement.canMove = false;
-                    playerMovement.faceTarget(interactable.transform, 10f);
-
-                }
-                else
-                {
-                    playerMovement.canMove = true;
-                }
-            }
-            else
-            {
-                return;
-            }
-            //Run this code while player is talking to an npc   
+ 
             if (npc.state == States.talking)
             {
                 Debug.Log("harold");
@@ -121,4 +111,6 @@ public class Interaction : MonoBehaviour
 
         }
     }
+
+    
 }

@@ -78,9 +78,9 @@ MonoBehaviour:
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      shutterAngle: 270
+      shutterAngle: 360
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
@@ -124,7 +124,7 @@ MonoBehaviour:
         postExposure: 1
         temperature: 13
         tint: 0
-        hueShift: 1
+        hueShift: 0
         saturation: 1.25
         contrast: 1
       channelMixer:
@@ -309,7 +309,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0
+      intensity: 1
   grain:
     m_Enabled: 0
     m_Settings:

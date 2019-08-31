@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 [System.Serializable]
 public class NPC : MonoBehaviour
@@ -12,13 +13,18 @@ public class NPC : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public States state = States.idle;
     public string Name;
+    public bool isKeyNPC; // es un NPC clave
 
     [Header("Dynamic Interactions")]
     public bool hasDynamicInteraction = false;
     public bool startsInteraction = false;
+    public bool ActivateEvent = false; //activa algún evento este NPC?
+    public bool hasActivatedEvent = false;
+    public bool haveToGiveYouSomething = false;
+    public bool haveToReceiveSomething = false; 
     public int dialogueState; // estado de dialogo 
     public GameObject[] NPCinteractions; //esta variable guardará a todos los npc en el cual este les afecte la interacción
-
+    public GameObject NPCQuest; // este se activará en caso de que este active un evento a otro NPC
 
     [Header("Dialogue")]
     public bool isTalking;  // está hablando con el jugador?
@@ -31,11 +37,13 @@ public class NPC : MonoBehaviour
     {
         [TextArea(3, 10)]
         public string[] sentences;
+        
     }
-
+    
   
     void Start()
     {
+        
         isTalking = false;
         dialogueState = 0; 
     }
@@ -61,7 +69,7 @@ public class NPC : MonoBehaviour
         foreach (char letter in dialogue[dialogueState].sentences[index].ToCharArray())
         {
             textDisplay.text += letter;
-            yield return new WaitForSeconds(0.0025f);
+            yield return new WaitForSeconds(0.00025f);
         }
     }
 
@@ -95,12 +103,26 @@ public class NPC : MonoBehaviour
     #endregion
 
     
-    public void changeDialogueState()
+    public void changeDialogueState(bool coffee, bool taco)
     {
         if (dialogueState == dialogue.Count-1)
             return;
-        dialogueState++;
-        startsInteraction = true;
+        if (!haveToGiveYouSomething && !haveToReceiveSomething)
+        {
+            dialogueState++;
+            startsInteraction = true;
+        }
+        if(haveToGiveYouSomething && haveToReceiveSomething && coffee)
+        {
+            dialogueState++;
+            startsInteraction = true;
+        }
+        if (!haveToGiveYouSomething && haveToReceiveSomething && taco)
+        {
+            dialogueState++;
+            startsInteraction = true;
+        }
+
     }
 
 
